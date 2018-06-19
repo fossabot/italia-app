@@ -10,10 +10,13 @@ import {
 import * as React from "react";
 import { NavigationScreenProp, NavigationState } from "react-navigation";
 import { connect } from "react-redux";
+
 import AppHeader from "../../components/ui/AppHeader";
+import { environment } from "../../config";
 import I18n from "../../i18n";
 import ROUTES from "../../navigation/routes";
 import { ReduxProps } from "../../store/actions/types";
+
 type ReduxMappedProps = {};
 type OwnProps = {
   navigation: NavigationScreenProp<NavigationState>;
@@ -23,6 +26,10 @@ type Props = ReduxMappedProps & ReduxProps & OwnProps;
  * A screen where the user can choose to login with SPID or get more informations.
  */
 class LandingScreen extends React.Component<Props, never> {
+  private navigateToMarkdown() {
+    this.props.navigation.navigate(ROUTES.MARKDOWN);
+  }
+
   private navigateToIdpSelection() {
     this.props.navigation.navigate(ROUTES.AUTHENTICATION_IDP_SELECTION);
   }
@@ -40,7 +47,13 @@ class LandingScreen extends React.Component<Props, never> {
             <Text>{I18n.t("authentication.landing.headerTitle")}</Text>
           </Body>
         </AppHeader>
-        <Content />
+        <Content>
+          {environment === "DEV" && (
+            <Text link={true} onPress={_ => this.navigateToMarkdown()}>
+              Test Markdown
+            </Text>
+          )}
+        </Content>
         <View footer={true}>
           <Button
             block={true}
