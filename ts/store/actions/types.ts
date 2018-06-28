@@ -13,6 +13,7 @@ import {
 import { GlobalState } from "../reducers/types";
 import { ApplicationActions } from "./application";
 import { APP_STATE_CHANGE_ACTION } from "./constants";
+import { DeeplinkActions } from "./deeplink";
 import { ErrorActions } from "./error";
 import { MessagesActions } from "./messages";
 import { NotificationsActions } from "./notifications";
@@ -33,15 +34,16 @@ export type ApplicationStateAction = Readonly<{
 export type Action =
   | ApplicationActions
   | ApplicationStateAction
+  | DeeplinkActions
+  | ErrorActions
+  | MessagesActions
   | NavigationAction
-  | SessionActions
-  | OnboardingActions
   | NotificationsActions
+  | OnboardingActions
   | PinloginActions
   | ProfileActions
-  | MessagesActions
   | ServicesActions
-  | ErrorActions
+  | SessionActions
   | WalletActions;
 
 export type GetState = () => GlobalState;

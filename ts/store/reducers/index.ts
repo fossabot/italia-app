@@ -10,6 +10,7 @@ import { PersistConfig, persistReducer } from "redux-persist";
 import { Action } from "../actions/types";
 import createSecureStorage from "../storages/keychain";
 import appStateReducer from "./appState";
+import deeplinkReducer from "./deeplink";
 import entitiesReducer from "./entities";
 import errorReducer from "./error";
 import loadingReducer from "./loading";
@@ -42,6 +43,7 @@ const reducer = combineReducers<GlobalState, Action>({
   appState: appStateReducer,
   network: networkReducer,
   navigation: navigationReducer,
+  deeplink: deeplinkReducer,
 
   // UI
   loading: loadingReducer,
